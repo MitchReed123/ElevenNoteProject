@@ -245,6 +245,20 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElevenNote.data\ElevenNote.data.csproj">
+      <Project>{60b4fc64-ca7b-43d4-a492-b8bbb2fbe456}</Project>
+      <Name>ElevenNote.data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElevenNote.models\ElevenNote.models.csproj">
+      <Project>{4d67fe85-4733-441e-ace5-b903a1302a43}</Project>
+      <Name>ElevenNote.models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElevenNote.services\ElevenNote.services.csproj">
+      <Project>{b67ac82f-d6e7-4962-a0ea-3cbd072843b4}</Project>
+      <Name>ElevenNote.services</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
