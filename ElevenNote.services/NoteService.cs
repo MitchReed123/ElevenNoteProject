@@ -17,6 +17,11 @@ namespace ElevenNote.services
         {
             _userId = userId;
         }
+
+        /// <summary>
+        /// Get all notes for the current user
+        /// </summary>
+        /// <returns>Returns the current users notes</returns>
         public IEnumerable<NoteListItemModel> GetNotes()
         {
             using (var ctx = new ElevenNoteDbContext())
@@ -39,6 +44,12 @@ namespace ElevenNote.services
             }
         }
 
+        /// <summary>
+        /// Create a new note for the current user
+        /// </summary>
+        /// <param name="model">The model to base the new note upon</param>
+        /// <returns>A boolean indicating whether creating a note was successful.</returns>
+
         public bool CreateNote(NoteCreateModel model)
         {
             var entity =
@@ -57,6 +68,67 @@ namespace ElevenNote.services
                 return ctx.SaveChanges() == 1; 
             }
         }
+        /// <summary>
+        /// Gets a particular note for the current user
+        /// </summary>
+        /// <param name="noteId">The Id of the note to retrieve </param>
+        /// <returns>Specified note</returns>
+        public NoteDetailModel GetNoteById(int noteId)
+        {
+            using(var ctx = new ElevenNoteDbContext())
+            {
+                var entity =
+                    ctx
+                    .Notes
+                    .Single(e => e.NoteId == noteId && e.OwnerId == _userId);
+
+                return
+                    new NoteDetailModel
+                    {
+                        NoteId = entity.NoteId,
+                        Title = entity.Title,
+                        Content = entity.Content,
+                        CreatedUtc = entity.CreatedUtc,
+                        ModifiedUtc = entity.ModifiedUtc
+                    };
+            }
+        }
+
+        public bool UpdateNote(NoteEditModel model)
+        {
+            using(var ctx = new ElevenNoteDbContext())
+            {
+                var entity =
+                    ctx
+                    .Notes
+                    .Single(e => e.NoteId == model.NoteId && e.OwnerId == _userId);
+
+                entity.Title = model.Title;
+                entity.Content = model.Content;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        
+        public bool DeleteNote(int noteId)
+        {
+            using(var ctx = new ElevenNoteDbContext())
+            {
+                var entity = 
+                    ctx
+                    .Notes
+                    .Single(e => e.NoteId == noteId && e.OwnerId == _userId);
+
+                ctx.Notes.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+
+
+            }
+        }
+
+
 
 
     }

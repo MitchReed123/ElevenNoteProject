@@ -237,6 +237,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Notes\Index.cshtml" />
     <Content Include="Views\Notes\Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
+    <Content Include="Views\Notes\Details.cshtml" />
+    <Content Include="Views\Notes\Edit.cshtml" />
+    <Content Include="Views\Notes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
