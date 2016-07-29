@@ -21,6 +21,8 @@ namespace ElevenNote.models
         public string Title { get; set; }
 
         public string Content { get; set; }
+        [UIHint("Starred")]
+        public bool IsStarred { get; set; }
 
         public override string ToString()
         {

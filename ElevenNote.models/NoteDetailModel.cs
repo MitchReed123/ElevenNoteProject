@@ -17,6 +17,7 @@ namespace ElevenNote.models
         public DateTimeOffset CreatedUtc { get; set; }
 
         public DateTimeOffset? ModifiedUtc { get; set; }
+        public bool IsStarred { get; set; }
 
         public override string ToString()
         {
